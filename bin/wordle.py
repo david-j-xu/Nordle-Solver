@@ -32,11 +32,11 @@ class Action:
 
 
 '''
-Calculates entropy (\E[-\lg(x)], where x denotes the proportion of remaining words
+Calculates information -lg(prop_remaining) gained from a given guess.
 '''
 
 
-def get_entropy(info: Label, word_set: Set[str]) -> float:
+def get_information(info: Label, word_set: Set[str]) -> float:
     viable = 0
     n = len(word_set)
     for word in word_set:
