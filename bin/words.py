@@ -1,7 +1,6 @@
 '''
 Word list and dictionary mapping words to indices
 '''
-from main import logger
 
 word_list = [
   "which",
