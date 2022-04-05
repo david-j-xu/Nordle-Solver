@@ -41,7 +41,7 @@ Labels a candidate word w1 given true word w2
 '''
 
 
-def label(w1: List[str], w2: List[str]):
+def get_label(w1: List[str], w2: List[str]):
     if (not (len(w1) == len(w2) == 5)):
         raise ValueError("Words must be of length 5")
 
@@ -79,7 +79,7 @@ def check_valid_word(w: List[str], l: Label) -> Boolean:
         raise ValueError("Word must be of length 5")
     # word is valid iff it has the same coloring against the guess as the true word
     guess_word = l.guess
-    cand_lbl = label(guess_word, w)
+    cand_lbl = get_label(guess_word, w)
     for i in range(5):
         if cand_lbl.colors[i] != l.colors[i]:
             return False
@@ -100,5 +100,5 @@ def guess_of_str(guess: str) -> List[str]:
 if __name__ == "__main__":
     w1 = guess_of_str("wordl")
     w2 = guess_of_str("wordq")
-    label(w1, w2)
+    get_label(w1, w2)
     print(w1, w2)

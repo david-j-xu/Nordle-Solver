@@ -5767,4 +5767,4 @@ Maps of words to their indices
 '''
 index_dict = {x:i for (i,x) in enumerate(word_list)}
 
-complete_word_set = set(word_list[1:10])
+complete_word_set = set(word_list[1:100])
