@@ -112,7 +112,10 @@ Calculates best guess
 def best_action(word_set: Set[str]) -> str:
     max_word = ""
     max_e = -1
+    i = 0
     for word in word_set:
+        print(i)
+        i = i + 1
         e = get_entropy(word, word_set)
         if (e > max_e):
             max_e = e
@@ -125,6 +128,10 @@ if __name__ == "__main__":
     agent = Agent()
 
     print("True Word: ", board.true_word)
+    
+    ## improve performance by always guessing the optimal first guess w/o calculation
+    label = board.guess("later")
+    agent.update_set(label)
 
     while (board.get_state() == GameState.PLAYING):
         next_guess = agent.get_action()
@@ -132,3 +139,5 @@ if __name__ == "__main__":
         label = board.guess(next_guess)
         print("Returned Label: ", label)
         agent.update_set(label)
+
+    print('Guesses: ' , board.curr_guesses)
