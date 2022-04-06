@@ -126,7 +126,10 @@ Calculates best guess
 def best_action(word_set: Set[str]) -> str:
     max_word = ""
     max_e = -1
+    i = 0
     for word in word_set:
+        print(i)
+        i = i + 1
         e = get_entropy(word, word_set)
         if (e > max_e):
             max_e = e
