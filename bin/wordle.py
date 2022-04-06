@@ -5,8 +5,22 @@ from typing import List
 from utils import *
 import random
 from enum import Enum
-from words import complete_word_set
+from words import word_list, complete_word_set, index_dict
 from math import log2 as lg
+import pandas as pd
+
+
+def create_word_map():
+    word_map = []
+
+    for i in word_list[1:10]:
+        curr = []
+        for j in word_list[1:10]:
+            curr.append(get_label(guess_of_str(i), guess_of_str(j)).to_list())
+
+        word_map.append(curr)
+    return word_map
+
 
 '''
 Wordle game representation
@@ -121,14 +135,19 @@ def best_action(word_set: Set[str]) -> str:
 
 
 if __name__ == "__main__":
-    board = Board()
-    agent = Agent()
+    import time
+    start_time = time.time()
+    map = create_word_map()
+    print(pd.DataFrame(map))
+    print("Time elapsed:", time.time() - start_time)
+    # board = Board()
+    # agent = Agent()
 
-    print("True Word: ", board.true_word)
+    # print("True Word: ", board.true_word)
 
-    while (board.get_state() == GameState.PLAYING):
-        next_guess = agent.get_action()
-        print("Guess: ", next_guess)
-        label = board.guess(next_guess)
-        print("Returned Label: ", label)
-        agent.update_set(label)
+    # while (board.get_state() == GameState.PLAYING):
+    #     next_guess = agent.get_action()
+    #     print("Guess: ", next_guess)
+    #     label = board.guess(next_guess)
+    #     print("Returned Label: ", label)
+    #     agent.update_set(label)

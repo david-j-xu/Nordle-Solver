@@ -1,5 +1,5 @@
 from typing import Set, List
-from enum import Enum
+from enum import IntEnum
 from xmlrpc.client import Boolean
 
 '''
@@ -7,7 +7,7 @@ Enumeration of hint types
 '''
 
 
-class Hint(Enum):
+class Hint(IntEnum):
     GREY = 1
     YELLOW = 2
     GREEN = 3
@@ -34,6 +34,9 @@ class Label:
 
     def __str__(self) -> str:
         return ' '.join([self.guess[i] + ':' + self.colors[i].__str__() for i in range(5)])
+
+    def to_list(self) -> List[int]:
+        return [int(x) for x in self.colors]
 
 
 '''
